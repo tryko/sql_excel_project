@@ -1,11 +1,11 @@
-# sql_excel_project
+# SQL_Excel_project
 
 Tasks:
 * create notebook for step 1:
-    * connect to db
+    * connect to DB
     * divided questions between us.
 * create notebook for step 2:
-    * merge data from db and from txt to one cvs/excel file
+    * merge data from DB and from txt to one CVS/excel file
 * create excel file for step 3:
     * load file
     * divided work between us.
