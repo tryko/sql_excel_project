@@ -1,11 +1,14 @@
-question 2
+#question 2
 query1 = '''
              select count(distinct item) as item_count, count(distinct item) as item_name_count  
              from items
          '''
 display(queryResult(query1))
 
-question 4
+
+
+
+#question 4
 query1 = '''
              select count(distinct customer_info.customer_id) 
              from campaign inner join registration on registration.campaign_id = campaign.campaign_id
@@ -15,7 +18,9 @@ query1 = '''
          '''
 display(queryResult(query1))
 
-question 6
+
+
+#question 6
 query1 = ''' select quant."item id by quantity",quant."quantity",rev."item id by revenue",rev."revenue"
              from (select items.item_id as "item id by quantity",count(order_details.order_id * order_details.amount) as "quantity"
                    from order_details inner join items on items.item_id=order_details.item_id
@@ -29,7 +34,9 @@ query1 = ''' select quant."item id by quantity",quant."quantity",rev."item id by
          '''
 display(queryResult(query1))
 
-question 8
+
+
+#question 8
 query1 = '''select categories.category_id, categories.category, 
                    sum(case when "country" = 'US' then "amount"*"us_ship" else 0 end)::float +
                    sum(case when "country" not in ('US') then "amount"*"other_ship" else 0 end)::float as "Total shipment"  
@@ -43,7 +50,22 @@ query1 = '''select categories.category_id, categories.category,
 # sum(us_ship+other_ship) as "total shipments"
 display(queryResult(query1))
 
-question 10
+
+
+# question 9
+query1 = '''
+            select customer_info."customer_id","date",avg("amount"*"price")
+            from customer_info inner join orders on customer_info.customer_id = orders.customer_id
+                               inner join order_details on orders.order_id = order_details.order_id
+                               inner join items on order_details.item_id = items.item_id
+            group by customer_info."customer_id","date"
+            having "date"=min("date")
+         '''
+display(queryResult(query1))
+
+
+
+#question 10
 query1 = '''select "country",
                     100*sum(case when "gender" = 'Male' then 1 else 0 end)/count(*)::float as male_ratio,
                     100*sum(case when "gender" = 'Female' then 1 else 0 end)/count(*)::float as female_ratio 
